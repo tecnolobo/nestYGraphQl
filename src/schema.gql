@@ -19,6 +19,9 @@ type Query {
   randomEntero(to: Int): Int!
   todos(status: Boolean): [Todo!]!
   todo(id: Int!): Todo!
+  totalTodos: Int!
+  pendingTodos: Int!
+  comletedTodos: Int!
 }
 
 type Mutation {

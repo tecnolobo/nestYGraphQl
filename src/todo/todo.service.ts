@@ -10,8 +10,22 @@ export class TodoService {
     {id:1,descrtion:"OPiedra del alma",done:true}
     ,{id:2,descrtion:"OPiedra del espacop",done:false}
     ,{id:3,descrtion:"OPiedra del poder",done:false}
+    ,{id:4,descrtion:"Pidra  del rio",done:true}
+    ,{id:5,descrtion:"Pidra  del tiempo",done:true}
   ];
 
+
+  getTotaltodos(){
+    return this.todos.length;
+  }
+
+  getPendingTodo(){
+    return this.todos.filter(todos=>todos.done==false).length;
+  }
+
+  getCompleteTodo(){
+    return this.todos.filter(todos=>todos.done==true).length;
+  }
 
   findAll(statusArgs:StatusArgs):Todo[]{
 
