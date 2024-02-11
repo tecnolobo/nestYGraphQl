@@ -1,14 +1,15 @@
 import { Resolver, Query } from '@nestjs/graphql';
+import { Todo } from './entity/todo.entity';
 
 @Resolver()
 export class TodoResolver {
 
   @Query(
-    ()=>[String] //Arreglo de string
+    ()=>[Todo] //Arreglo de string
     ,{name:'todos'}
   )
   findAll(){
-    return ['a','b','c','d']
+    return []
   }
 
   findOne(){
