@@ -1,9 +1,9 @@
 import { Resolver, Query, Args, Int, ArgsType, Mutation } from '@nestjs/graphql';
-import { CreateTodoInput } from './dto/input/create-todo.input';
+import { CreateTodoInput,UpdateTodoInput } from './dto/input';
 import { Todo } from './entity/todo.entity';
 import { TodoService } from './todo.service';
 
-@Resolver()
+@Resolver(()=>Todo) //Se le envia como parametro que tipo de dato va a trabajar
 export class TodoResolver {
 
   constructor(
@@ -36,12 +36,19 @@ export class TodoResolver {
     return this.todoServices.create(createTodoInput);
   }
 
-  updateTodo(){
-
+  @Mutation(()=>Todo,{name:"updateTodo"})
+  updateTodo(
+    @Args('updateTodoInput') updateTodoInput:UpdateTodoInput
+  ){
+    
+    return this.todoServices.update(updateTodoInput);
   }
 
-  removeTodo(){
-
+  @Mutation(()=>Boolean)
+  removeTodo(
+    @Args('id',{type:()=>Int}) id:number
+  ){
+    return this.todoServices.delete(id);
   }
 
 }
