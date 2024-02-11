@@ -1,0 +1,15 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Query {
+  """hola mundo es lo que retorna"""
+  hello: String!
+
+  """trae un numero random"""
+  randomNombre: Float!
+
+  """Regresa un entero"""
+  randomEntero(to: Int): Int!
+  todos: [String!]!
+}
