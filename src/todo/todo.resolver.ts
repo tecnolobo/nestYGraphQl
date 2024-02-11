@@ -3,6 +3,7 @@ import { CreateTodoInput,UpdateTodoInput } from './dto/input';
 import { Todo } from './entity/todo.entity';
 import { TodoService } from './todo.service';
 import { StatusArgs } from './dto/arg/status.args';
+import { AgregationsType } from './types/agregations.type';
 
 @Resolver(()=>Todo) //Se le envia como parametro que tipo de dato va a trabajar
 export class TodoResolver {
@@ -68,6 +69,16 @@ export class TodoResolver {
   @Query(()=>Int,{name:"comletedTodos"})
   comletedTodos():number{
     return this.todoServices.getCompleteTodo();
+  }
+
+  @Query(()=>AgregationsType)
+  agregations():AgregationsType{
+
+    return {
+      completed:this.comletedTodos(),
+      pending:this.pendingTodos(),
+      total:this.totalTodos()
+    }
   }
 
 
