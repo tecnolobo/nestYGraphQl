@@ -2,6 +2,7 @@ import { Resolver, Query, Args, Int, ArgsType, Mutation } from '@nestjs/graphql'
 import { CreateTodoInput,UpdateTodoInput } from './dto/input';
 import { Todo } from './entity/todo.entity';
 import { TodoService } from './todo.service';
+import { StatusArgs } from './dto/arg/status.args';
 
 @Resolver(()=>Todo) //Se le envia como parametro que tipo de dato va a trabajar
 export class TodoResolver {
@@ -16,8 +17,10 @@ export class TodoResolver {
     ()=>[Todo] //Arreglo de string
     ,{name:'todos'}
   )
-  findAll(){
-    return this.todoServices.findAll();
+  findAll(
+    @Args() startusAr:StatusArgs
+  ){
+    return this.todoServices.findAll(startusAr);
   }
 
   @Query(
